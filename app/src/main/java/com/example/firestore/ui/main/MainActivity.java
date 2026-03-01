@@ -1,8 +1,5 @@
 package com.example.firestore.ui.main;
 import com.example.firestore.R;
-
-
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +20,6 @@ import com.example.firestore.ui.tracking.TrackingFragment;
 import com.example.firestore.ui.home.HomeFragment;
 import com.example.firestore.ui.tracking.PendingFragment;
 
-
-// La actividad principal, el esqueleto completo de la aplicaciÃ³n.
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     private NavController navController;
@@ -35,11 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((binding = ActivityMainBinding.inflate(getLayoutInflater())).getRoot());
-
-        // 1. Obtenemos la referencia de la Toolbar del layout
         setSupportActionBar(binding.toolbar);
-
-        // 2. Obtenemos el NavController desde el contenedor del grafo
         navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
 
 
@@ -49,23 +40,15 @@ public class MainActivity extends AppCompatActivity {
                 R.id.pendientesFragment
         ).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        // 6. Unir el BottomNavigationView con el NavController
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController);
     }
 
-
-
-
-
-    // Gestionar los clics en las opciones del menú
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         return NavigationUI.onNavDestinationSelected(item, navController)
                 || super.onOptionsItemSelected(item);
     }
 
-    // Gestionar el botón de navegación (flecha atrás)
     @Override
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
@@ -78,9 +61,4 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_options, menu);
         return true;
     }
-
-
-
-
-
 }
