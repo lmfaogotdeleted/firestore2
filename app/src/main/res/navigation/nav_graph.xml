@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/InicioFragment">
+
+    <fragment
+        android:id="@+id/InicioFragment"
+        android:name="com.example.firestore.ui.home.HomeFragment"
+        android:label="Buscar"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/toInformacion"
+            app:destination="@id/informacionFragment" />
+        <action
+            android:id="@+id/action_InicioFragment_to_pendientesFragment"
+            app:destination="@id/pendientesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/informacionFragment"
+        android:name="com.example.firestore.ui.info.InformationFragment"
+        android:label="Detalles"
+        tools:layout="@layout/fragment_information" />
+    <fragment
+        android:id="@+id/pendientesFragment"
+        android:name="com.example.firestore.ui.tracking.PendingFragment"
+        android:label="Pendientes"
+        tools:layout="@layout/fragment_pending" >
+        <action
+            android:id="@+id/toInformacion"
+            app:destination="@id/informacionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/seguimientoFragment"
+        android:name="com.example.firestore.ui.tracking.TrackingFragment"
+        android:label="Seguimiento"
+        tools:layout="@layout/fragment_tracking" >
+        <action
+            android:id="@+id/action_seguimientoFragment_to_aniadirFragment"
+            app:destination="@id/aniadirFragment" />
+        <action
+            android:id="@+id/action_seguimientoFragment_to_detalleSeguimientoFragment"
+            app:destination="@id/detalleSeguimientoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aniadirFragment"
+        android:name="com.example.firestore.ui.tracking.AddFragment"
+        android:label="Añadir"
+        tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/detalleSeguimientoFragment"
+        android:name="com.example.firestore.ui.tracking.TrackingDetailFragment"
+        android:label="Detalles"
+        tools:layout="@layout/fragment_tracking_detail" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.firestore.ui.user.ui.user.SettingsFragment"
+        android:label="Ajustes"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_InicioFragment"
+            app:destination="@id/InicioFragment" />
+    </fragment>
+</navigation>

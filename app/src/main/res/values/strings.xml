@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Ejercicio6</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id" translatable="false">161391911382-4iljdr1mn9gvilprb6s115jlm5b452sm.apps.googleusercontent.com</string>
+
+
+    <string-array name="idiomas_array">
+        <item>Español (España)</item>
+        <item>Inglés (EE.UU.)</item>
+        <item>Francés</item>
+        <item>Alemán</item>
+        <item>Italiano</item>
+    </string-array>
+</resources>
