@@ -1,5 +1,4 @@
 package com.example.firestore.data.repository;
-
 import android.app.Application;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,44 +9,34 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.firestore.data.local.MediaItem;
 import com.example.firestore.data.local.TrackingEntity;
-
-// Encargado de hablar con nuestra base de datos local Room.
 public class LocalDatabaseRepository {
-
     private final FirebaseFirestore db;
     private final FirebaseAuth auth;
-
     public LocalDatabaseRepository(Application application) {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
     }
-
     public void insertar(MediaItem pelicula) {
         if (auth.getCurrentUser() == null) return;
         String uid = auth.getCurrentUser().getUid();
-
         db.collection("users")
                 .document(uid)
                 .collection("pendientes")
                 .document(String.valueOf(pelicula.getId()))
                 .set(pelicula);
     }
-
     public void insertarSerie(TrackingEntity serie) {
         if (auth.getCurrentUser() == null) return;
         String uid = auth.getCurrentUser().getUid();
-
         db.collection("users")
                 .document(uid)
                 .collection("TrackingEntity")
                 .document(String.valueOf(serie.getId()))
                 .set(serie);
     }
-
     public LiveData<List<MediaItem>> fetchPeliculas() {
         MutableLiveData<List<MediaItem>> data = new MutableLiveData<>();
         if (auth.getCurrentUser() == null) return data;
-
         db.collection("users")
                 .document(auth.getCurrentUser().getUid())
                 .collection("pendientes")
@@ -62,11 +51,9 @@ public class LocalDatabaseRepository {
                 });
         return data;
     }
-
     public interface ExistenciaCallback {
         void onCallback(boolean existe);
     }
-
     public void existePelicula(String id, ExistenciaCallback callback) {
         if (auth.getCurrentUser() == null) {
             callback.onCallback(false);
@@ -85,7 +72,6 @@ public class LocalDatabaseRepository {
                     }
                 });
     }
-
     public void existeSerie(String id, ExistenciaCallback callback) {
         if (auth.getCurrentUser() == null) {
             callback.onCallback(false);
@@ -104,11 +90,9 @@ public class LocalDatabaseRepository {
                     }
                 });
     }
-
     public LiveData<List<TrackingEntity>> fetchSeries() {
         MutableLiveData<List<TrackingEntity>> data = new MutableLiveData<>();
         if (auth.getCurrentUser() == null) return data;
-
         db.collection("users")
                 .document(auth.getCurrentUser().getUid())
                 .collection("TrackingEntity")
